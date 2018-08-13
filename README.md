@@ -21,7 +21,7 @@ in this project two tables are created, one is for users and the other is custom
 
 ## Users
 
-To create, delete, update, list and change the role status we will use the following:
+To create, delete, update, list user and change the role status we will use the following:
 
 ### Create
 
@@ -70,6 +70,22 @@ you must provide the id of the user admin in "idAdmin", in this way the system c
         "password": "1234",
 }
 ```
+
+### List 
+
+to list the user you should only use the following:
+
+```
+http://localhost:8080/api/user/
+```
+
+if you only want to bring the information of a single user:
+
+```
+http://localhost:8080/api/user/{username}
+```
+passing the user you want to see the information in "username".
+
 
 
 
