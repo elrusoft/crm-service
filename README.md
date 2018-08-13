@@ -43,7 +43,7 @@ you must provide the id of the user admin in "idAdmin", in this way the system c
 
 ### Delete
 
-To update the user, is similar to creating user but using the PUT method
+To update the user, is similar to creating user but using the DELETE method
 
 ```
 http://localhost:8080/api/{idAdmin}/user/{id}
@@ -73,7 +73,7 @@ you must provide the id of the user admin in "idAdmin", in this way the system c
 
 ### List 
 
-to list the user you should only use the following:
+To list the user, with the GET method you should only use the following:
 
 ```
 http://localhost:8080/api/user/
@@ -86,9 +86,15 @@ http://localhost:8080/api/user/{username}
 ```
 passing the user you want to see the information in "username".
 
+### Change to admin
 
+If you want to change a user to be an admin, with the PUT method  you must use the following:
 
+```
+http://localhost:8080/api/user/{idAdmin}/{iduser}
+```
 
+you must pass the id ("idAdmin") of the user admin and the id ("iduser") of the user that you want to change to admin
 
 
 
