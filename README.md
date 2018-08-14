@@ -172,6 +172,21 @@ Delete an existing customer must use the method DELETE and with the following re
 http://localhost:8080/api/customer/{id}
 ```
 
+### List
+
+List all the customers with the GET method and with the following request:
+
+```
+http://localhost:8080/api/customer/
+```
+and if you want to list only one:
+
+```
+http://localhost:8080/api/customer/{id}
+```
+in this case, the unique identification of the customer should be passed.
+
+
 ## Authors
 
 * **Mikhail Polozhaev**  [elrusoft](https://github.com/elrusoft)
