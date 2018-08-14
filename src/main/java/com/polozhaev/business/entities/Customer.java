@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.lang.NonNull;
+
 
 
 @Entity
@@ -42,6 +44,7 @@ public class Customer implements Serializable{
 
 	private String photo;
 	
+	@NonNull
 	@ManyToOne
 	private User createby;
 	

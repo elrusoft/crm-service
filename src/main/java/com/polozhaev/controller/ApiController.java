@@ -176,10 +176,10 @@ public class ApiController {
 	}
 
 	// return one Customer by id
-	@RequestMapping(value = "/customer/{username}")
-	public ResponseEntity<Customer> getCustomer(@PathVariable String username) {
+	@RequestMapping(value = "/customer/{id}")
+	public ResponseEntity<Customer> getCustomer(@PathVariable String id) {
 
-		Customer customer = customerService.getCustomerByCreateUser(username);
+		Customer customer = customerService.getCustomerByIdCustomer(id);
 		if (customer == null) {
 			return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
 		}
