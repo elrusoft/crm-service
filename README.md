@@ -18,6 +18,19 @@ Open http://localhost:8080/ in your browser or some HTTP client (like a Postman)
 
 in this project two tables are created, one is for users and the other is customer
 
+to make requests a basic authentication is used, a username and password must be provided. At the moment these users are static, in the future it will be possible to use the users created in the database.
+
+estos usuarios se pueden cambiar en el archivo SpringSecurityConfig en la parte de :
+
+```
+	@SuppressWarnings("deprecation")
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		
+		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("root").password("123456").roles("ADMIN").and().withUser("user").password("123456").roles("USER");
+                }
+```	
+
 
 ## Users
 
