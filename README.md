@@ -145,5 +145,33 @@ http://localhost:8080/api/customer/{customerid}/upload
 ```
 providing the id("customerid") of the customer and taking into account that only jpeg and PNG can be uploaded.
 
+If you want to modify the image, you must use the same request.
 
+### Update
 
+To update the customer the put method must be used with the following request:
+
+```
+http://localhost:8080/api/user/{userid}/customer
+```
+Like in the previous request, you must provide the id of the user who will modify the customer, so that it is registered who has modified it and a json must be sent with the data to be modified as in the previous one.
+
+```
+{
+ 	"name": "name  customer",
+ 	"surname": "surname  customer",
+   	"idcustomer": "id customer unique"
+}
+```
+
+### Delete
+
+Delete an existing customer must use the method DELETE and with the following request indicate the customer id to be deleted:
+
+```
+http://localhost:8080/api/customer/{id}
+```
+
+## Authors
+
+* **Mikhail Polozhaev**  [elrusoft](https://github.com/elrusoft)
