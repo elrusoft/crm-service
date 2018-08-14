@@ -112,4 +112,32 @@ You must pass the id ("idAdmin") of the user admin and the id ("iduser") of the 
 
 Customer has requests to create, update, delete, list, upload image.
 
-###
+### Create 
+
+create a customer we must use the following request:
+
+```
+http://localhost:8080/api/user/{userid}/customer
+```
+the user id (userid) must be provided for the customer's reference when it is saved and a json must be sent with the customer's data as follows:
+
+```
+{
+    "name": "name  customer",
+    "surname": "surname customer",
+    "idCustomer": "id customer unique"
+}
+```
+If all goes well, it returns a json object with the customer's data next to the id that we will use for the image upload.
+
+### Upload image
+
+With the id that returns the creation of the customer, with the post method, we send an image to the next request:
+
+```
+http://localhost:8080/api/customer/{customerid}/upload
+```
+providing the id("customerid") of the customer and taking into account that only jpeg and PNG can be uploaded.
+
+
+
