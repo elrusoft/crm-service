@@ -63,8 +63,9 @@ public class ApiController {
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 
-	// return one user by id
 	
+	
+	// return one user by id
 	@RequestMapping(value = "/user/{username}")
 	public ResponseEntity<User> getUser(@PathVariable String username) {
 
@@ -77,6 +78,7 @@ public class ApiController {
 	
 	
 
+	//Method to create customer
 	@RequestMapping(method = RequestMethod.POST, value = "/user/{idAdmin}")
 	ResponseEntity<Void> createUser(@PathVariable int idAdmin, @RequestBody User user, UriComponentsBuilder ucBuilder) {
 
@@ -99,6 +101,7 @@ public class ApiController {
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
 
+	//Method to update user
 	@RequestMapping(method = RequestMethod.PUT, value = "/user/{idAdmin}")
 	ResponseEntity<User> updateUser(@PathVariable int idAdmin, @RequestBody User user) {
 
@@ -113,6 +116,7 @@ public class ApiController {
 
 	}
 
+	//Method to delete user 
 	@RequestMapping(method = RequestMethod.DELETE, value = "{idAdmin}/user/{id}")
 	ResponseEntity<Void> deleteUser(@PathVariable int idAdmin, @PathVariable int id, UriComponentsBuilder ucBuilder) {
 
@@ -131,6 +135,7 @@ public class ApiController {
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
 
+	//Method to update user role admin
 	@RequestMapping(method = RequestMethod.PUT, value = "/user/{idAdmin}/{iduser}")
 	ResponseEntity<Void> updateUserRole(@PathVariable int idAdmin, @PathVariable int iduser) {
 
@@ -146,15 +151,21 @@ public class ApiController {
 
 	}
 
-	// ------------------------ End User api rest
-	// ---------------------------------//
+	// ------------------------ End User api rest  ---------------------------------//
 
 
 	
 	
+	
+	
+	
+	
 
-//------------------------Customer api rest ---------------------------------//		
-	// return all users
+//------------------------Customer api rest ---------------------------------//
+	
+	
+	
+	// return all customer
 	@RequestMapping(value = "/customer")
 	public ResponseEntity<List<Customer>> listAllCustomers() {
 		List<Customer> customers = customerService.findAllCustomers();
@@ -164,7 +175,7 @@ public class ApiController {
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 	}
 
-	// return one user by id
+	// return one Customer by id
 	@RequestMapping(value = "/customer/{username}")
 	public ResponseEntity<Customer> getCustomer(@PathVariable String username) {
 
@@ -175,6 +186,7 @@ public class ApiController {
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 	}
 
+	//Method to create customer
 	@RequestMapping(method = RequestMethod.POST, value = "/user/{userid}/customer")
 	ResponseEntity<Void> createCustomer(@RequestBody Customer customer, UriComponentsBuilder ucBuilder,
 			@PathVariable int userid) {
@@ -197,6 +209,8 @@ public class ApiController {
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
 
+	
+	//Method to update customer
 	@RequestMapping(method = RequestMethod.PUT, value = "/user/{userid}/customer")
 	ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer, @PathVariable int userid) {
 
@@ -218,6 +232,8 @@ public class ApiController {
 
 	}
 
+	
+	//Method to delete customer
 	@RequestMapping(method = RequestMethod.DELETE, value = "/customer/{id}")
 	ResponseEntity<Void> deletCustomer(@PathVariable int id, UriComponentsBuilder ucBuilder) {
 
@@ -229,6 +245,8 @@ public class ApiController {
 		return new ResponseEntity<Void>(headers, HttpStatus.OK);
 	}
 
+	
+	//Method to upload image customer
 	@RequestMapping(method = RequestMethod.POST, value = "/customer/{customerid}/upload")
 	ResponseEntity<Customer> uploadPhotoCustomer(@PathVariable int customerid,
 			@RequestParam("file") MultipartFile uploadfile) {
@@ -273,9 +291,14 @@ public class ApiController {
 
 	}
 
-	// ------------------------ End User api rest
-	// ---------------------------------//
+	// ------------------------ End User api rest  ---------------------------------//
 
+	
+	
+	
+	
+	
+//this method is to create first customer
 	@RequestMapping("customer/save")
 	public String process() {
 
@@ -289,15 +312,15 @@ public class ApiController {
 
 		return "done";
 	}
-
+	//this method is to create first user
 	@RequestMapping("user/save")
 	public @ResponseBody String saveUser() {
 
 		User user = new User();
-		user.setEmail("mikhail.polozhaev@gmail.com");
+		user.setEmail("crmservice@crm.com");
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		user.setPassword(passwordEncoder.encode("1234"));
-		user.setUsername("elrusoft");
+		user.setPassword(passwordEncoder.encode("123456"));
+		user.setUsername("test");
 		user.setRole("ROLE_ADMIN");
 		user.setEnabled(true);
 
