@@ -29,6 +29,12 @@ to make requests a basic authentication is used, a username and password must be
         }
 ```	
 
+before starting we must create a first user called test that has the role of admin, for this you have the request:
+
+```
+http://localhost:8080/api/user/save
+```
+
 
 ## Users
 
