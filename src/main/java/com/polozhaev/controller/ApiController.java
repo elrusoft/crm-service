@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +28,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.polozhaev.business.entities.Customer;
 import com.polozhaev.business.entities.User;
-import com.polozhaev.business.repositories.CustomerRepository;
-import com.polozhaev.business.repositories.UserRepository;
 import com.polozhaev.service.CustomerService;
 import com.polozhaev.service.UserService;
 import com.polozhaev.service.UploadService;
@@ -47,13 +48,15 @@ public class ApiController {
 	@Autowired
 	UploadService UploadService;
 
-//agregar un actualizador de solo roles
+
 
 //------------------------User api rest ---------------------------------//		
 	// return all users
+	@PreAuthorize("hasRole('ROLE_ADMIN'")
 	@RequestMapping(value = "/user")
 	public ResponseEntity<List<User>> listAllUsers() {
 		List<User> users = userService.findAllUsers();
+		
 		if (users.isEmpty()) {
 			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
 		}
@@ -61,6 +64,7 @@ public class ApiController {
 	}
 
 	// return one user by id
+	
 	@RequestMapping(value = "/user/{username}")
 	public ResponseEntity<User> getUser(@PathVariable String username) {
 
@@ -70,6 +74,8 @@ public class ApiController {
 		}
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
+	
+	
 
 	@RequestMapping(method = RequestMethod.POST, value = "/user/{idAdmin}")
 	ResponseEntity<Void> createUser(@PathVariable int idAdmin, @RequestBody User user, UriComponentsBuilder ucBuilder) {
@@ -83,7 +89,7 @@ public class ApiController {
 
 		if (admin.isAdmin()) {
 			userService.addUser(user);
-		}else {
+		} else {
 			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		}
 
@@ -143,9 +149,9 @@ public class ApiController {
 	// ------------------------ End User api rest
 	// ---------------------------------//
 
-	// en actualizar que solo actualizar el campo modifyby
-	// en crear agregar la parte de usuarios tanto createby como modifyby
-	// agregar lo de la foto
+
+	
+	
 
 //------------------------Customer api rest ---------------------------------//		
 	// return all users
@@ -231,8 +237,16 @@ public class ApiController {
 			return new ResponseEntity("please select a file!", HttpStatus.OK);
 		}
 
+		if(uploadfile.getContentType() != "image/png" || uploadfile.getContentType() != "image/jpeg") {
+		
 		// image/png , image/jpeg
-		System.out.println("type: " + uploadfile.getContentType());
+
+			System.out.println("type: " + uploadfile.getContentType());
+			
+			return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+			
+			
+		}
 
 		Customer customer = customerService.findById(customerid);
 
@@ -281,9 +295,11 @@ public class ApiController {
 
 		User user = new User();
 		user.setEmail("mikhail.polozhaev@gmail.com");
-		user.setPassword("1234");
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		user.setPassword(passwordEncoder.encode("1234"));
 		user.setUsername("elrusoft");
-		user.setRole("admin");
+		user.setRole("ROLE_ADMIN");
+		user.setEnabled(true);
 
 		userService.addUser(user);
 
