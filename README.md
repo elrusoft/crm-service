@@ -26,9 +26,9 @@ estos usuarios se pueden cambiar en el archivo SpringSecurityConfig en la parte 
 	@SuppressWarnings("deprecation")
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("root").password("123456").roles("ADMIN").and().withUser("user").password("123456").roles("USER");
-                }
+				auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("root").password("123456").roles("ADMIN").and().withUser("user").password("123456").roles("USER");
+				
+        }
 ```	
 
 
@@ -95,7 +95,7 @@ http://localhost:8080/api/user/
 if you only want to bring the information of a single user:
 
 ```
-http://localhost:8080/api/user/{username}
+http://localhost:8080/api/user?{username}
 ```
 passing the user you want to see the information in "username".
 
