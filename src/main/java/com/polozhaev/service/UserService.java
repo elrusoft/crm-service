@@ -13,19 +13,15 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 import com.polozhaev.business.entities.User;
 import com.polozhaev.business.repositories.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
 
-	
-	
-	
 	public List<User> findAllUsers() {
 
 		List<User> users = new ArrayList<>();
@@ -35,13 +31,10 @@ public class UserService implements UserDetailsService{
 	}
 
 	public void addUser(User user) {
-		
-		
+
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		
-		
-		
+
 		userRepository.save(user);
 
 	}
@@ -91,8 +84,7 @@ public class UserService implements UserDetailsService{
 
 	public void updateUser(User user) {
 
-		
-		//change 
+		// change
 		userRepository.save(user);
 
 	}
@@ -100,8 +92,8 @@ public class UserService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-	      return userRepository.findOneByUsername(username);
-	   
+		return userRepository.findOneByUsername(username);
+
 	}
 
 }

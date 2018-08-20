@@ -1,10 +1,6 @@
 package com.polozhaev.business.entities;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +11,10 @@ import javax.persistence.Table;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-
-	// ROLE_ADMIN
-	// ROLE_USER
 
 	private static final long serialVersionUID = 1L;
 
@@ -66,12 +60,9 @@ public class User implements UserDetails {
 		this.email = email;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -95,12 +86,9 @@ public class User implements UserDetails {
 				+ role + "]";
 	}
 
-	
-	
 	public String getPassword() {
 		return password;
 	}
-
 
 	public String getUsername() {
 		return username;
