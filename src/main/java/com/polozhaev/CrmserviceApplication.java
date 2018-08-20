@@ -9,9 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@EnableResourceServer
 public class CrmserviceApplication {
 
-	
-	private static final Logger logger = LoggerFactory.getLogger(CrmserviceApplication.class);	
-	
+	private static final Logger logger = LoggerFactory.getLogger(CrmserviceApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(CrmserviceApplication.class, args);
 		logger.debug("--Application Started--");

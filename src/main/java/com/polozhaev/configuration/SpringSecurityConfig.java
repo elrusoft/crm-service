@@ -29,7 +29,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@SuppressWarnings("deprecation")
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-	
+
 		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
 				.withUser(env.getProperty("root.user")).password(env.getProperty("root.password")).roles("ADMIN");
 
