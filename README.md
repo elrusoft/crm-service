@@ -32,7 +32,7 @@ to make requests a basic authentication is used, a username and password must be
 before starting we must create a first user called test that has the role of admin, for this you have the request:
 
 ```
-http://localhost:8080/api/user/save
+http://localhost:8080/user/save
 ```
 
 
@@ -45,7 +45,7 @@ To create, delete, update, list user and change the role status we will use the 
 To create the user, we must use the post method in this way
 
 ```
-http://localhost:8080/api/user/{idAdmin}
+http://localhost:8080/user/{idAdmin}
 
 ```
 You must provide the id of the user admin in "idAdmin", in this way the system checks if you have permission to create user , and send a json with the following structure:
@@ -63,7 +63,7 @@ You must provide the id of the user admin in "idAdmin", in this way the system c
 To update the user, is similar to creating user but using the DELETE method
 
 ```
-http://localhost:8080/api/{idAdmin}/user/{id}
+http://localhost:8080/{idAdmin}/user/{id}
 
 ```
 You must provide the id of the user admin in "idAdmin", in this way the system checks if you have permission to create user , and "id" is the id of the user that you want to erase:
@@ -75,7 +75,7 @@ You must provide the id of the user admin in "idAdmin", in this way the system c
 To update the user, is similar to creating user but using the PUT method
 
 ```
-http://localhost:8080/api/user/{idAdmin}
+http://localhost:8080/user/{idAdmin}
 
 ```
 You must provide the id of the user admin in "idAdmin", in this way the system checks if you have permission to create user , and send a json with the following structure:
@@ -93,13 +93,13 @@ You must provide the id of the user admin in "idAdmin", in this way the system c
 To list the user, with the GET method you should only use the following:
 
 ```
-http://localhost:8080/api/user/
+http://localhost:8080/user/
 ```
 
 If you only want to bring the information of a single user:
 
 ```
-http://localhost:8080/api/user?{username}
+http://localhost:8080/user?{username}
 ```
 passing the user you want to see the information in "username".
 
@@ -108,7 +108,7 @@ passing the user you want to see the information in "username".
 If you want to change a user to be an admin, with the PUT method  you must use the following:
 
 ```
-http://localhost:8080/api/user/{idAdmin}/{iduser}
+http://localhost:8080/user/{idAdmin}/{iduser}
 ```
 
 You must pass the id ("idAdmin") of the user admin and the id ("iduser") of the user that you want to change to admin
@@ -123,7 +123,7 @@ Customer has requests to create, update, delete, list, upload image.
 create a customer we must use the following request:
 
 ```
-http://localhost:8080/api/user/{userid}/customer
+http://localhost:8080/user/{userid}/customer
 ```
 the user id (userid) must be provided for the customer's reference when it is saved and a json must be sent with the customer's data as follows:
 
@@ -141,7 +141,7 @@ If all goes well, it returns a json object with the customer's data next to the 
 With the id that returns the creation of the customer, with the post method, we send an image to the next request:
 
 ```
-http://localhost:8080/api/customer/{customerid}/upload
+http://localhost:8080/customer/{customerid}/upload
 ```
 providing the id("customerid") of the customer and taking into account that only jpeg and PNG can be uploaded.
 
@@ -152,7 +152,7 @@ If you want to modify the image, you must use the same request.
 To update the customer the put method must be used with the following request:
 
 ```
-http://localhost:8080/api/user/{userid}/customer
+http://localhost:8080/user/{userid}/customer
 ```
 Like in the previous request, you must provide the id of the user who will modify the customer, so that it is registered who has modified it and a json must be sent with the data to be modified as in the previous one.
 
@@ -169,7 +169,7 @@ Like in the previous request, you must provide the id of the user who will modif
 Delete an existing customer must use the method DELETE and with the following request indicate the customer id to be deleted:
 
 ```
-http://localhost:8080/api/customer/{id}
+http://localhost:8080/customer/{id}
 ```
 
 ### List
@@ -177,12 +177,12 @@ http://localhost:8080/api/customer/{id}
 List all the customers with the GET method and with the following request:
 
 ```
-http://localhost:8080/api/customer/
+http://localhost:8080/customer/
 ```
 and if you want to list only one:
 
 ```
-http://localhost:8080/api/customer/{id}
+http://localhost:8080/customer/{id}
 ```
 in this case, the unique identification of the customer should be passed.
 
